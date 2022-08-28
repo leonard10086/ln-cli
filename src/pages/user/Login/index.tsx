@@ -1,3 +1,6 @@
+import Footer from '@/components/Footer';
+import { login } from '@/services/ant-design-pro/api';
+import { getFakeCaptcha } from '@/services/ant-design-pro/login';
 import {
   AlipayCircleOutlined,
   LockOutlined,
@@ -6,14 +9,15 @@ import {
   UserOutlined,
   WeiboCircleOutlined,
 } from '@ant-design/icons';
+import {
+  LoginForm,
+  ProFormCaptcha,
+  ProFormCheckbox,
+  ProFormText,
+} from '@ant-design/pro-components';
 import { Alert, message, Tabs } from 'antd';
 import React, { useState } from 'react';
-import { ProFormCaptcha, ProFormCheckbox, ProFormText, LoginForm } from '@ant-design/pro-form';
-import { useIntl, history, FormattedMessage, SelectLang, useModel } from 'umi';
-import Footer from '@/components/Footer';
-import { login } from '@/services/ant-design-pro/api';
-import { getFakeCaptcha } from '@/services/ant-design-pro/login';
-
+import { FormattedMessage, history, SelectLang, useIntl, useModel } from 'umi';
 import styles from './index.less';
 
 const LoginMessage: React.FC<{
@@ -57,7 +61,6 @@ const Login: React.FC = () => {
         });
         message.success(defaultLoginSuccessMessage);
         await fetchUserInfo();
-        
         /** 此方法会跳转到 redirect 参数所在的位置 */
         if (!history) return;
         const { query } = history.location;
@@ -85,21 +88,21 @@ const Login: React.FC = () => {
       </div>
       <div className={styles.content}>
         <LoginForm
-          logo={<img style={{width:'300px',position:'absolute',left:'705px'}} alt="logo" src="/xeyslogo.png" />}
-          title=""
+          logo={<img alt="logo" src="/logo.svg" />}
+          title="Ant Design"
           subTitle={intl.formatMessage({ id: 'pages.layouts.userLayout.title' })}
           initialValues={{
             autoLogin: true,
           }}
           actions={[
-            // <FormattedMessage
-            //   key="loginWith"
-            //   id="pages.login.loginWith"
-            //   defaultMessage="其他登录方式"
-            // />,
-            // <AlipayCircleOutlined key="AlipayCircleOutlined" className={styles.icon} />,
-            // <TaobaoCircleOutlined key="TaobaoCircleOutlined" className={styles.icon} />,
-            // <WeiboCircleOutlined key="WeiboCircleOutlined" className={styles.icon} />,
+            <FormattedMessage
+              key="loginWith"
+              id="pages.login.loginWith"
+              defaultMessage="其他登录方式"
+            />,
+            <AlipayCircleOutlined key="AlipayCircleOutlined" className={styles.icon} />,
+            <TaobaoCircleOutlined key="TaobaoCircleOutlined" className={styles.icon} />,
+            <WeiboCircleOutlined key="WeiboCircleOutlined" className={styles.icon} />,
           ]}
           onFinish={async (values) => {
             await handleSubmit(values as API.LoginParams);
@@ -279,7 +282,7 @@ const Login: React.FC = () => {
           </div>
         </LoginForm>
       </div>
-      
+      <Footer />
     </div>
   );
 };
