@@ -1,0 +1,275 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "尚融宝后台管理系统接口描述",
+    "version": "1.0",
+    "title": "尚融宝后台管理系统--api文档",
+    "contact": {
+      "name": "李燕茹",
+      "url": "http://baidu.com",
+      "email": "728831102@qq.com"
+    }
+  },
+  "host": "localhost:8083",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "swagger-controller",
+      "description": "Swagger Controller"
+    }
+  ],
+  "paths": {
+    "/admin/integralGrade/getById/{id}": {
+      "get": {
+        "tags": [
+          "swagger-controller"
+        ],
+        "summary": "根据id查询积分等级",
+        "operationId": "getByIdUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "数据id",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "x-example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/IntegralGrade对象"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/admin/integralGrade/list": {
+      "get": {
+        "tags": [
+          "swagger-controller"
+        ],
+        "summary": "积分等级列表",
+        "operationId": "listAllUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/IntegralGrade对象"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/admin/integralGrade/remove/{id}": {
+      "delete": {
+        "tags": [
+          "swagger-controller"
+        ],
+        "summary": "根据id删除积分等级",
+        "description": "逻辑删除",
+        "operationId": "removeByIdUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "数据id",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "x-example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/admin/integralGrade/save": {
+      "post": {
+        "tags": [
+          "swagger-controller"
+        ],
+        "summary": "新增积分等级",
+        "operationId": "saveUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "integralGrade",
+            "description": "积分等级对象",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IntegralGrade对象"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/admin/integralGrade/updateById": {
+      "put": {
+        "tags": [
+          "swagger-controller"
+        ],
+        "summary": "根据id修改积分等级",
+        "operationId": "updateByIdUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "integralGrade",
+            "description": "积分等级对象",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IntegralGrade对象"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "definitions": {
+    "IntegralGrade对象": {
+      "type": "object",
+      "properties": {
+        "borrowAmount": {
+          "type": "number",
+          "description": "借款额度"
+        },
+        "createTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "创建时间"
+        },
+        "deleted": {
+          "type": "boolean",
+          "description": "逻辑删除(1:已删除，0:未删除)"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "编号"
+        },
+        "integralEnd": {
+          "type": "integer",
+          "format": "int32",
+          "description": "积分区间结束"
+        },
+        "integralStart": {
+          "type": "integer",
+          "format": "int32",
+          "description": "积分区间开始"
+        },
+        "updateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "更新时间"
+        }
+      },
+      "title": "IntegralGrade对象",
+      "description": "积分等级表"
+    }
+  }
+}
